@@ -4,16 +4,24 @@ import { Grafic } from './Grafic'
 
 
 export const ButtonComponent = () => {
-
+    //token para saber si presiono el boton
     const token = "pressed"
+    //token para almacenar el color sellecionado
     var colorPressed = localStorage.getItem("colorBtn")
     
+
+    //estados del boton para desactivar o activar
     const [button, setbutton] = useState(false)
+
+    //estado para cambiar el color del boton
     const [color, setcolor] = useState('')
 
+
+    //efecto que solo cambia si cambia el estado del boton y comprueba
+    // si existe el boton presionado para desactivarlo
     useEffect(() => {
         if(localStorage.getItem("press")){
-            console.log('item existe');
+         
             setbutton(true)
         }
      
@@ -21,7 +29,8 @@ export const ButtonComponent = () => {
 
 
     
-
+    //funcion para manejar el click del boton y asignar los colores dependiendo de lo que devuelva a traves 
+    // de props el componente Counter
     const handleClick = (e) => {
 
         e.preventDefault()
@@ -93,10 +102,14 @@ export const ButtonComponent = () => {
         <div className="row">
             <div className="col-md-6">
                 <div className="mt-5">
+
+                    {/* si el boton es verdadero muestra la grafica */}
                     {button && <Grafic />}
                 </div>
             </div>
 
+
+            {/* si el boton ha sido presionado muestra el color en el segundo que fue presionado */}
             <div className="col-md-6">
                 {colorPressed && <h1 className="text-white mt-5 animate__animated animate__bounceIn" style={{background:`${colorPressed}`, borderRadius: '15px'}}> Your color was {colorPressed} </h1>}
             </div>
